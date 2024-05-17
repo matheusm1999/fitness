@@ -1,0 +1,30 @@
+.link-ativo {
+    background-color: #C24E3D;
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+}
+
+.sidebar {
+    background-color: antiquewhite;
+    height: 100vh;
+    padding: 3rem;
+    box-sizing: border-box;
+}
+
+.sidebar-itens {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#sidebar {
+    max-width: 0;
+    overflow:hidden;
+    transition: max-width 0.3s ease-in-out;
+  }
+  
+#sidebar.hide {
+    max-width: 100%;
+    /*transition: max-width 0.3s ease-in-out;*/
+}
+

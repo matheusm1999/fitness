@@ -1,0 +1,36 @@
+
+    <app-header></app-header>
+    
+    <div class="relative w-full flex box-border">
+        <app-sidebar></app-sidebar>
+        <main id="main" class="w-full  bg-primaria/95 h-screen p-4 duration-900 ease-in-out">
+            <router-outlet></router-outlet>
+        </main>
+        
+    </div>
+
+
+
+<app-footer></app-footer>
+<!--
+    <div class="conteudo">
+        <app-header></app-header>
+        <div class="container flex h-screen">
+            <app-sidebar></app-sidebar>
+            <main class="conteudo-largura w-full p-2 bg-terciaria">
+                <router-outlet></router-outlet>
+            </main>
+        </div>
+        <!--
+            <div class="h-screen w-full flex">
+                <app-sidebar></app-sidebar>
+                <main class="h-full p-2 bg-terciaria"> <!-- h-full faz ocupar a altura do pai-->
+        <!--
+                    <router-outlet></router-outlet>
+                </main>
+                    -->
+                    <!--
+                        <app-footer></app-footer>
+                    </div>
+                    -->
+    

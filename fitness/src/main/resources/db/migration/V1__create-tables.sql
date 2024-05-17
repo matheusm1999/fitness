@@ -1,0 +1,63 @@
+CREATE TABLE IF NOT EXISTS Pessoa (
+	idPessoa INT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(100) NOT NULL,
+	login VARCHAR(100) NOT NULL,
+	senha TEXT NOT NULL,
+	permissao VARCHAR(45) NOT NULL DEFAULT 'ALUNO',
+	PRIMARY KEY (idPessoa)
+);
+
+CREATE TABLE IF NOT EXISTS Treino (
+	idTreino INT NOT NULL AUTO_INCREMENT,
+    idPessoa INT NOT NULL,
+	nome VARCHAR(100) NOT NULL,
+	dataInicio DATE NOT NULL,
+	dataFim DATE NOT NULL,
+    PRIMARY KEY (idTreino),
+    FOREIGN KEY (idPessoa) REFERENCES Pessoa(idPessoa) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Divisao (
+	idDivisao INT NOT NULL AUTO_INCREMENT,
+    idTreino INT NOT NULL,
+	nome VARCHAR(100) NOT NULL,
+	diaSemana VARCHAR (15) NOT NULL,
+    PRIMARY KEY (idDivisao),
+    FOREIGN KEY (idTreino) REFERENCES Treino(idTreino) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Exercicio (
+	idExercicio INT NOT NULL AUTO_INCREMENT,
+    idDivisao INT NOT NULL,
+	nome VARCHAR(100) NOT NULL,
+    comentario VARCHAR(150),
+	series VARCHAR(45) NOT NULL,
+    repeticoes VARCHAR(45) NOT NULL,
+    intervalo DECIMAL NOT NULL,
+    PRIMARY KEY (idExercicio),
+    FOREIGN KEY (idDivisao) REFERENCES Divisao(idDivisao) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Avaliacao (
+    idAvaliacao INT NOT NULL AUTO_INCREMENT,
+    idPessoa INT NOT NULL,
+    data DATE NOT NULL,
+    peso DECIMAL,
+    altura DECIMAL,
+    PRIMARY KEY(idAvaliacao),
+    FOREIGN KEY (idPessoa) REFERENCES Pessoa(idPessoa) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Anexo (
+    idAnexo INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    binario BLOB,
+    PRIMARY KEY (idAnexo)
+);
+
+CREATE TABLE IF NOT EXISTS AnexoAvaliacao (
+    idAnexo INT NOT NULL,
+    idAvaliacao INT NOT NULL,
+    FOREIGN KEY (idAnexo) REFERENCES Anexo(idAnexo) ON DELETE CASCADE,
+    FOREIGN KEY (idAvaliacao) REFERENCES Avaliacao(idAvaliacao) ON DELETE CASCADE
+);

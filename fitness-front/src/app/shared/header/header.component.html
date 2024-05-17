@@ -1,0 +1,15 @@
+<header id="navbar" class="flex justify-between items-center px-3 py-5 sm:p-3 box-border bg-primaria text-terciaria">
+    <div class="flex items-center gap-4">
+        <button (click)="habilitarDesabilitarSidebar()" class="hover:text-gray-400">
+            <svg id="navClosed" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class=" h-12 w-12 sm:h-10 sm:w-10">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+        </button>
+        <h1 class="font-rubik font-bold text-3xl text-gradient bg-gradient-to-r from-terciaria to-secundaria text-transparent bg-clip-text">FITNESS</h1>
+    </div>
+    <div class="flex gap-3">
+        <a routerLink="/home" [routerLinkActive]="['text-secundaria']" class="default:text-terciaria font-extralight hover:text-secundaria">HOME</a>
+        <a routerLink="/" routerLinkActive="text-secundaria" class="text-terciaria font-extralight hover:text-secundaria">SOBRE</a>
+    </div>
+</header>

@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.conteudo-largura {
+    box-sizing: border-box;
+    background-color: cadetblue;
+    width: 100%;
+    padding: 3rem;
+}
