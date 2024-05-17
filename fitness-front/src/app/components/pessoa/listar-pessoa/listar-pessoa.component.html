@@ -5,6 +5,50 @@
     <button routerLink="/cadastrarPessoa" class="bg-secundaria rounded-2xl py-1 px-2">Cadastrar Pessoas</button>
 </div>
 
-<div *ngFor="let pessoa of pessoas">
-    <app-pessoa-single [pessoa]="pessoa"></app-pessoa-single>
+<div class="overflow-auto">
+    <table class="w-full table-fixed border-secundaria text-center">
+        <thead class="bg-hover-preto">
+            <tr>
+                <th class="break-words">ID</th>
+                <th class="break-words">NOME</th>
+                <th class="break-words">LOGIN</th>
+                <th class="break-words">SENHA</th>
+                <th class="break-words">PERMISSÃO</th>
+                <th break-words>AÇÃO</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="py-4 break-words">pessoa.idPessoa</td>
+                <td class="py-4 break-words">pessoa.nome</td>
+                <td class="py-4 break-words">pessoa.login</td>
+                <td class="py-4 break-words">pessoa.senha</td>
+                <td class="py-4 break-words">pessoa.permissao</td>
+                <td class="py-4 break-words w-full">
+                    <button class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">CONSULTAR</button>
+                    <button class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">EDITAR</button>
+                    <button class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">REMOVER</button> 
+                </td>
+            </tr>
+            <tr *ngFor="let pessoa of pessoas" class="even:bg-hover-preto odd:bg-inherit border-t border-secundaria">
+                <td class="py-4 break-words">{{pessoa.idPessoa}}</td>
+                <td class="py-4 break-words">{{pessoa.nome}}</td>
+                <td class="py-4 break-words">{{pessoa.login}}</td>
+                <td class="py-4 break-words">{{pessoa.senha}}</td>
+                <td class="py-4 break-words">{{pessoa.permissao}}</td>
+                <td class="py-4 break-words w-full">
+                    <button class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">CONSULTAR</button>
+                    <button class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">EDITAR</button>
+                    <button class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">REMOVER</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
+
+<!-- 
+    <div *ngFor="let pessoa of pessoas">
+        {{pessoa.nome}}
+        <app-pessoa-single [pessoa]="pessoa"></app-pessoa-single>
+    </div>
+-->
