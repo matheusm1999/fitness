@@ -42,6 +42,14 @@ public class PessoaService {
         return pessoaRepository.findAll();
     }
 
+    public Pessoa get(int id){
+        return pessoaRepository.getReferenceById(id);
+    }
+
+    public void excluir(int id){
+        pessoaRepository.deleteById(id);
+    }
+
     public boolean validarPessoaAtualizar(Optional<Pessoa> pessoaAntiga, Pessoa pessoa) {
         System.out.println("Fui chamado de verdade");
         if(!pessoaAntiga.isPresent()){

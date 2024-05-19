@@ -1,0 +1,40 @@
+<form [formGroup]="formulario" class=" h-full rounded-lg py-2 px-3">
+    <h2 class="text-center text-2xl font-bold text-secundaria" >{{titulo}}</h2>
+    <div class="flex flex-col gap-3 mt-4">
+        <div>
+            <p class="text-red-500" *ngIf="formulario.get('nome')?.errors?.['required'] && formulario.get('nome')?.dirty">Nome é obrigatório</p>
+            <input class="w-full border-2 border-border-default/40 bg-bg-formulario/50 placeholder:font-normal px-3 py-2" placeholder="login" formControlName="nome">
+        </div>
+        <div>
+            <p class="text-red-500" *ngIf="formulario.get('login')?.errors?.['required']  && formulario.get('login')?.dirty">Email é obrigatório</p>
+            <input class="w-full border-2 border-border-default/40 bg-bg-formulario/50 placeholder:font-normal px-3 py-2" placeholder="email" formControlName="login" type="email">
+        </div>
+        <div>
+            <p class="text-red-500" *ngIf="formulario.get('senha')?.errors?.['required'] && formulario.get('senha').dirty">Senha é obrigatória</p>
+            <input class="w-full border-2 border-border-default/40 bg-bg-formulario/50 placeholder:font-normal px-3 py-2" placeholder="senha" formControlName="senha">
+        </div>
+    </div>
+    <!-- 
+        <div class="flex -mx-2">
+            <div class="px-2">
+                <p>Nome</p>
+                <input class="bg-gray-500" formControlName="nome">
+            </div>
+            <div class="px-2">
+                <p>Login</p>
+                <input class="bg-gray-500" formControlName="login" type="email">
+            </div>
+            <div class="px-2">
+                <p>Senha</p>
+                <input class="bg-gray-500" formControlName="senha">
+            </div>
+        </div>
+    -->
+    <div class="text-end">
+        <button type="button"
+            [ngClass]="{'bg-secundaria/30' : formulario.invalid}"
+            [disabled]="formulario.invalid"
+            (click)="acao()"
+            class="bg-secundaria text-primaria font-normal rounded-2xl py-2 px-4 mt-5">{{conteudoBotao}}</button>
+    </div>
+</form>

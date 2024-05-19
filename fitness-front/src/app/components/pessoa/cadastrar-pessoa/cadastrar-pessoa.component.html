@@ -1,27 +1,12 @@
-<form [formGroup]="formulario" class="bg-bg-formulario/5 h-full rounded-lg py-2 px-3">
-    <h2 class="text-center text-2xl font-bold text-secundaria" >CADASTRO DE PESSOA</h2>
-    <div class="flex flex-col gap-3 mt-4">
-        <input class="bg-bg-formulario/50 px-3 py-2 placeholder:text-primaria" placeholder="login" formControlName="nome">
-        <input class="bg-bg-formulario/50 px-3 py-2 placeholder:text-primaria" placeholder="email" formControlName="login" type="email">
-        <input class="bg-bg-formulario/50 px-3 py-2 placeholder:text-primaria" placeholder="senha" formControlName="senha">
+<div class=" relative">
+    <app-formulario-base 
+        (acaoClique)="cadastrarPessoa($event)"
+        conteudoBotao="CADASTRAR"
+        titulo="CADASTRAR PESSOA">
+    </app-formulario-base>
+    
+    <div *ngIf="mensagemErro" class="px-3 text-lg font-normal">
+        <p class="bg-hover-preto inline p-4 rounded-md">{{mensagemErro}}</p>
     </div>
-    <!-- 
-        <div class="flex -mx-2">
-            <div class="px-2">
-                <p>Nome</p>
-                <input class="bg-gray-500" formControlName="nome">
-            </div>
-            <div class="px-2">
-                <p>Login</p>
-                <input class="bg-gray-500" formControlName="login" type="email">
-            </div>
-            <div class="px-2">
-                <p>Senha</p>
-                <input class="bg-gray-500" formControlName="senha">
-            </div>
-        </div>
-    -->
-    <div class="text-end">
-        <button (click)="cadastrarPessoa()" class="bg-secundaria rounded-2xl py-1 px-2 mt-5">Criar pessoa</button>
-    </div>
-</form>
+
+</div>

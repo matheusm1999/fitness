@@ -1,0 +1,13 @@
+<div *ngIf="pessoa">
+    <app-formulario-base
+        [pessoa]="pessoa" 
+        (acaoClique)="atualizarPessoa($event)"
+        titulo="ATUALIZAR PESSOA"
+        conteudoBotao="ATUALIZAR">
+    </app-formulario-base>
+
+    <div *ngIf="mensagemErro" class="px-3 text-lg font-normal">
+        <p class="bg-hover-preto inline p-4 rounded-md">{{mensagemErro}}</p>
+    </div>
+
+</div>

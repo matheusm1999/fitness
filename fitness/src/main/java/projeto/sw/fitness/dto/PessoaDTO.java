@@ -20,7 +20,7 @@ public class PessoaDTO {
     @NotBlank(message = "Nome é obrigatório")
     private String nome;
 
-    @Email
+    @Email(message = "Formato de email inválido")
     @NotBlank(message = "Login é obrigatório")
     private String login;
 

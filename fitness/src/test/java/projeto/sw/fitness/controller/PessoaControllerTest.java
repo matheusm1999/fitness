@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import projeto.sw.fitness.dto.PessoaDTO;
+import projeto.sw.fitness.dto.adapter.PessoaAdapter;
 import projeto.sw.fitness.dto.adapter.PessoaDTOAdapter;
 import projeto.sw.fitness.infra.exception.ValidacaoException;
 import projeto.sw.fitness.model.PermissaoEnum;
@@ -125,4 +126,17 @@ public class PessoaControllerTest {
 
     }
 
+
+    @Test
+    @DisplayName("Deveria retornar 200 quando consultar pessoa pelo id") 
+    void consultarPessoaDadosValidos() throws Exception {
+        Pessoa pessoaRetorno = new Pessoa(1,"matheus","matheus@email.com","123",PermissaoEnum.ALUNO);
+        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get("/pessoa/1"))
+        .andReturn().getResponse();
+
+        when(pessoaService.get(1)).thenReturn(pessoaRetorno);
+
+        Assertions.assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+        Assertions.assertThat(response.getContentAsString()).isEqualTo(new PessoaAdapter().adapt(pessoaRetorno));
+    }
 }

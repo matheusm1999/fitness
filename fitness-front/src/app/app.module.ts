@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PessoaSingleComponent } from './components/pessoa/pessoa-single/pessoa-single.component';
 import { CadastrarPessoaComponent } from './components/pessoa/cadastrar-pessoa/cadastrar-pessoa.component';
+import { FormularioBaseComponent } from './shared/pessoa/formulario-base/formulario-base.component';
+import { AtualizarPessoaComponent } from './components/pessoa/atualizar-pessoa/atualizar-pessoa.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { CadastrarPessoaComponent } from './components/pessoa/cadastrar-pessoa/c
     HomeComponent,
     ListarPessoaComponent,
     PessoaSingleComponent,
-    CadastrarPessoaComponent
+    CadastrarPessoaComponent,
+    FormularioBaseComponent,
+    AtualizarPessoaComponent
   ],
   imports: [
     BrowserModule,

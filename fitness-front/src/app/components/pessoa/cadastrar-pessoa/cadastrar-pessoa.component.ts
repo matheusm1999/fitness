@@ -8,14 +8,15 @@ import { PessoaService } from 'src/app/core/services/pessoa.service';
   templateUrl: './cadastrar-pessoa.component.html',
   styleUrls: ['./cadastrar-pessoa.component.css'],
 })
-export class CadastrarPessoaComponent implements OnInit{
+export class CadastrarPessoaComponent implements OnInit {
   formulario: FormGroup;
+  mensagemErro: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private pessoaService: PessoaService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
@@ -25,8 +26,26 @@ export class CadastrarPessoaComponent implements OnInit{
     });
   }
 
-  cadastrarPessoa() {
-    this.pessoaService.cadastrarPessoa(this.formulario.value).subscribe();
-    this.router.navigate(['/listarPessoa']);
+  cadastrarPessoa(formulario: FormGroup) {
+    this.pessoaService.cadastrarPessoa(formulario.value).subscribe({
+      next: (value) => {
+        this.router.navigate(['/listarPessoa']);
+      },
+      error: (err) => {
+        this.mensagemErro = '';
+        //Exibe cada erro de validação retornado pelo backend
+        if(err.status == 400) {
+          err.error.forEach(erro => {
+            this.mensagemErro += erro.mensagem;
+          });
+        }
+        else if(err.status == 409){
+          this.mensagemErro = err.error;
+        }
+        else{
+          this.mensagemErro = err.message;
+        }
+      }
+    });
   }
 }

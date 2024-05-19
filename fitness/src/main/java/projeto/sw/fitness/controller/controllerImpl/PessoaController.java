@@ -54,9 +54,8 @@ public class PessoaController implements IPessoaController{
     }
 
     @Override
-    public ResponseEntity detalhar(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'detalhar'");
+    public ResponseEntity<PessoaDTO> detalhar(int id) {
+        return ResponseEntity.ok(new PessoaAdapter().adapt(pessoaService.get(id)));
     }
 
 }

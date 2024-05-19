@@ -18,18 +18,20 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="py-4 break-words">pessoa.idPessoa</td>
-                <td class="py-4 break-words">pessoa.nome</td>
-                <td class="py-4 break-words">pessoa.login</td>
-                <td class="py-4 break-words">pessoa.senha</td>
-                <td class="py-4 break-words">pessoa.permissao</td>
-                <td class="py-4 break-words w-full">
-                    <button class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">CONSULTAR</button>
-                    <button class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">EDITAR</button>
-                    <button class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">REMOVER</button> 
-                </td>
-            </tr>
+            <!--
+                <tr>
+                    <td class="py-4 break-words">pessoa.idPessoa</td>
+                    <td class="py-4 break-words">pessoa.nome</td>
+                    <td class="py-4 break-words">pessoa.login</td>
+                    <td class="py-4 break-words">pessoa.senha</td>
+                    <td class="py-4 break-words">pessoa.permissao</td>
+                    <td class="py-4 break-words w-full">
+                        <button class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">CONSULTAR</button>
+                        <button class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">EDITAR</button>
+                        <button class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">REMOVER</button> 
+                    </td>
+                </tr>
+            -->
             <tr *ngFor="let pessoa of pessoas" class="even:bg-hover-preto odd:bg-inherit border-t border-secundaria">
                 <td class="py-4 break-words">{{pessoa.idPessoa}}</td>
                 <td class="py-4 break-words">{{pessoa.nome}}</td>
@@ -38,8 +40,8 @@
                 <td class="py-4 break-words">{{pessoa.permissao}}</td>
                 <td class="py-4 break-words w-full">
                     <button class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">CONSULTAR</button>
-                    <button class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">EDITAR</button>
-                    <button class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">REMOVER</button>
+                    <button [routerLink]="['/atualizarPessoa',pessoa.idPessoa]" class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">EDITAR</button>
+                    <button (click)="excluirPessoa(pessoa.idPessoa)" class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">REMOVER</button>
                 </td>
             </tr>
         </tbody>

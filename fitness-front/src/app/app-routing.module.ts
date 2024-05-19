@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { ListarPessoaComponent } from './components/pessoa/listar-pessoa/listar-pessoa.component';
 import { CadastrarPessoaComponent } from './components/pessoa/cadastrar-pessoa/cadastrar-pessoa.component';
+import { AtualizarPessoaComponent } from './components/pessoa/atualizar-pessoa/atualizar-pessoa.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path:'cadastrarPessoa',
     component: CadastrarPessoaComponent
+  },
+  {
+    path:'atualizarPessoa/:id',
+    component: AtualizarPessoaComponent
   }
 ];
 

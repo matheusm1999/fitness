@@ -10,7 +10,9 @@ module.exports = {
         "secundaria": '#C24E3D',
         "terciaria": '#EDEDED',
         "hover-preto": '#292929',
-        "bg-formulario" : '#808080'
+        "bg-formulario" : '#808080',
+        "border-default" : '#FFFFFF',
+        "fonte" : '#FFFFFF'
       },
       fontFamily: {
         "poppins": ['Poppins','sans-serif'],

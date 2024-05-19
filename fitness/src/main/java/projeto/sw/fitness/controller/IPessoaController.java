@@ -38,6 +38,6 @@ public interface IPessoaController {
     public ResponseEntity<List<PessoaDTO>> listar();
 
     @GetMapping("/{id}")
-    public ResponseEntity detalhar(@PathVariable int id);
+    public ResponseEntity<PessoaDTO> detalhar(@PathVariable int id);
 
 }
