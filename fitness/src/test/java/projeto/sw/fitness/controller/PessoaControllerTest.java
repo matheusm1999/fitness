@@ -16,7 +16,9 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
+import jakarta.persistence.EntityNotFoundException;
 import projeto.sw.fitness.dto.PessoaDTO;
 import projeto.sw.fitness.dto.adapter.PessoaAdapter;
 import projeto.sw.fitness.dto.adapter.PessoaDTOAdapter;
@@ -93,7 +95,7 @@ public class PessoaControllerTest {
     void atualizarPessoaDadosErroValidacao() throws Exception {
         PessoaDTO pessoaDTO = new PessoaDTO(0, "Matheus", "matheus@email.com", "123", PermissaoEnum.ALUNO);
 
-        // Quando um erro de validaçõ for lançado
+        // Quando um erro de validação for lançado
         when(pessoaService.atualizar(new PessoaDTOAdapter().adapt(pessoaDTO))).thenThrow(ValidacaoException.class);
 
         MockHttpServletResponse response = mockMvc.perform(
@@ -131,12 +133,30 @@ public class PessoaControllerTest {
     @DisplayName("Deveria retornar 200 quando consultar pessoa pelo id") 
     void consultarPessoaDadosValidos() throws Exception {
         Pessoa pessoaRetorno = new Pessoa(1,"matheus","matheus@email.com","123",PermissaoEnum.ALUNO);
-        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get("/pessoa/1"))
-        .andReturn().getResponse();
-
+        
         when(pessoaService.get(1)).thenReturn(pessoaRetorno);
 
+        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get("/pessoa/1"))
+                .andReturn().getResponse();
+
+        String jsonEsperado = pessoaJson.write(new PessoaAdapter().adapt(pessoaRetorno)).getJson();
+
         Assertions.assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-        Assertions.assertThat(response.getContentAsString()).isEqualTo(new PessoaAdapter().adapt(pessoaRetorno));
+        Assertions.assertThat(response.getContentAsString()).isEqualTo(jsonEsperado);
+
+    }
+
+    @Test
+    @DisplayName("Deveria retornar 500 quando consultar pessoa por id inexistente") 
+    void consultarPessoaDadosInvalidos() throws Exception {
+        Pessoa pessoaRetorno = new Pessoa(0,"matheus","matheus@email.com","123",PermissaoEnum.ALUNO);
+        
+        when(pessoaService.get(0)).thenThrow(EntityNotFoundException.class);
+
+        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get("/pessoa/0"))
+                .andReturn().getResponse();
+
+        Assertions.assertThat(response.getStatus()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR.value());
+
     }
 }

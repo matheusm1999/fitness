@@ -47,7 +47,6 @@ public class PessoaController implements IPessoaController{
 
     @Override
     public ResponseEntity<List<PessoaDTO>> listar() {
-        System.out.println("Listando as pessoas");
         List<PessoaDTO> pessoas = pessoaService.listar().stream().map(new PessoaAdapter()::adapt).toList();
         return ResponseEntity.ok(pessoas);
         
