@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, tap } from 'rxjs';
 import { Pessoa } from '../models/Pessoa';
 import { environment } from 'src/app/environment/enviroment.development';
+import { Paginacao, Paginador } from '../models/Paginacao';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,10 @@ export class PessoaService {
       map((retorno) => retorno)
     );
     */
+  }
+
+  listarPessoasPaginacao(parametros: HttpParams): Observable<Paginacao> {
+    return this.http.get<Paginacao>(environment.apiURlPessoa + '/paginacao', {params:parametros});
   }
 
   cadastrarPessoa(pessoa: Pessoa): Observable<Pessoa> {

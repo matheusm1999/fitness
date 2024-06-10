@@ -1,0 +1,19 @@
+<div class="flex gap-2 justify-end">
+    <select #dados (change)="trocarQuantidadeRegistrosPagina(dados.value)" class="bg-secundaria text-md rounded-2xl py-1 px-2 text-center">
+        <option selected>Quantidade de registros</option>
+        <option value="1">1</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+    </select>
+    
+    <button 
+        (click)="retrocederPagina()" 
+        [disabled]="paginacao.number == 0" [ngClass]="{'bg-secundaria/30' : paginacao.number== 0}"
+        class="bg-secundaria text-md rounded-2xl py-1 px-2">Anterior
+    </button>
+    <button 
+    (click)="avancarPagina()"
+    [disabled]="paginacao.last" [ngClass]="{'bg-secundaria/30' : paginacao.last}"
+    class="bg-secundaria text-md rounded-2xl py-1 px-2">Próximo</button>
+</div>

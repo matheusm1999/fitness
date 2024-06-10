@@ -15,6 +15,7 @@ import { PessoaSingleComponent } from './components/pessoa/pessoa-single/pessoa-
 import { CadastrarPessoaComponent } from './components/pessoa/cadastrar-pessoa/cadastrar-pessoa.component';
 import { FormularioBaseComponent } from './shared/pessoa/formulario-base/formulario-base.component';
 import { AtualizarPessoaComponent } from './components/pessoa/atualizar-pessoa/atualizar-pessoa.component';
+import { PaginatorComponent } from './shared/paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AtualizarPessoaComponent } from './components/pessoa/atualizar-pessoa/a
     PessoaSingleComponent,
     CadastrarPessoaComponent,
     FormularioBaseComponent,
-    AtualizarPessoaComponent
+    AtualizarPessoaComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,35 @@
+version: '3.9'
+services:
+  mysqldb:
+    image: mysql:latest
+    container_name: meu_mysql
+    environment:
+      - MYSQL_PASSWORD=1234
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=db_fitness
+    networks:
+      - compose-bridge
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  fitness_api:
+    build: .
+    container_name: fitness-api
+    environment:
+      - DATASOURCE_URL=jdbc:mysql://mysqldb:3306/db_fitness?autoReconnect=true&useSSL=false
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysqldb
+    restart: always
+    networks:
+      - compose-bridge
+
+networks:
+  compose-bridge:
+    driver: bridge
+
+volumes:
+  db_data:

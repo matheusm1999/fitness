@@ -4,6 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.stereotype.Service;
 
 import projeto.sw.fitness.infra.exception.ValidacaoException;
@@ -38,8 +43,15 @@ public class PessoaService {
         return pessoa;
     }
 
-    public List<Pessoa> listar(){
-        return pessoaRepository.findAll();
+    public Page<Pessoa> listar(Pessoa pessoa, Pageable paginacao){
+        Example<Pessoa> example = pessoaBusca(pessoa);
+        return pessoaRepository.findAll(example,paginacao);
+    }
+
+    public List<Pessoa> listar(Pessoa pessoa){
+        Example<Pessoa> example = pessoaBusca(pessoa);
+        return pessoaRepository.findAll(example);
+
     }
 
     public Pessoa get(int id){
@@ -48,6 +60,19 @@ public class PessoaService {
 
     public void excluir(int id){
         pessoaRepository.deleteById(id);
+    }
+
+    public Example<Pessoa> pessoaBusca(Pessoa pessoa){
+        ExampleMatcher matcher = ExampleMatcher.matching()
+            .withMatcher("nome", match -> match.contains().ignoreCase())
+            .withMatcher("idPessoa", match -> match.exact())
+            //.withIgnorePaths("idPessoa").withIgnoreNullValues()
+            .withIgnorePaths("login").withIgnoreNullValues()
+            .withIgnorePaths("permissao").withIgnoreNullValues()
+            .withIgnorePaths("senha").withIgnoreNullValues();
+        
+        Example<Pessoa> example = Example.of(pessoa,matcher);
+        return example;
     }
 
     public boolean validarPessoaAtualizar(Optional<Pessoa> pessoaAntiga, Pessoa pessoa) {

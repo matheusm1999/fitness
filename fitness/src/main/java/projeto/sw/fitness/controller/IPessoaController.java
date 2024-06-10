@@ -6,9 +6,13 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import projeto.sw.fitness.dto.PessoaDTO;
+import projeto.sw.fitness.dto.filter.PessoaFilter;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,8 +38,11 @@ public interface IPessoaController {
     @Transactional
     public ResponseEntity excluir(@PathVariable int id);
 
+    @GetMapping("/paginacao")
+    public ResponseEntity<Page<PessoaDTO>> listarPaginacao(@PageableDefault(size = 10, page = 0) Pageable paginacao, PessoaDTO pessoa);
+
     @GetMapping
-    public ResponseEntity<List<PessoaDTO>> listar();
+    public ResponseEntity<List<PessoaDTO>> listar(PessoaDTO pessoa);
 
     @GetMapping("/{id}")
     public ResponseEntity<PessoaDTO> detalhar(@PathVariable int id);

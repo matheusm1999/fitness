@@ -102,4 +102,5 @@ public class PessoaServiceTest {
 
         assertThrows(EntityNotFoundException.class, () -> pessoaService.get(0));
     }
+
 }

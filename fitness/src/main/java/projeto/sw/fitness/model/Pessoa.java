@@ -1,5 +1,6 @@
 package projeto.sw.fitness.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -25,7 +26,7 @@ import lombok.ToString;
 public class Pessoa {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPessoa;
+    private Integer idPessoa;
 
     private String nome;
 
@@ -34,5 +35,6 @@ public class Pessoa {
     private String senha;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "permissao", length = 30, columnDefinition = "VARCHAR(30)")
     private PermissaoEnum permissao;
 }

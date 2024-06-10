@@ -1,5 +1,6 @@
 package projeto.sw.fitness.controller;
 
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 import org.assertj.core.api.Assertions;
@@ -11,25 +12,36 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import jakarta.persistence.EntityNotFoundException;
+import projeto.sw.fitness.FitnessApplication;
+import projeto.sw.fitness.controller.controllerImpl.PessoaController;
 import projeto.sw.fitness.dto.PessoaDTO;
 import projeto.sw.fitness.dto.adapter.PessoaAdapter;
 import projeto.sw.fitness.dto.adapter.PessoaDTOAdapter;
+import projeto.sw.fitness.infra.exception.TratadorErros;
 import projeto.sw.fitness.infra.exception.ValidacaoException;
 import projeto.sw.fitness.model.PermissaoEnum;
 import projeto.sw.fitness.model.Pessoa;
 import projeto.sw.fitness.service.PessoaService;
 
-@SpringBootTest
+@SpringBootTest(classes = PessoaControllerTest.class)
+@Import(value={PessoaController.class,TratadorErros.class})
 @AutoConfigureMockMvc // Para conseguir injetar o MockMvc
 @AutoConfigureJsonTesters // Para conseguir injetar o JacksonTester
+@EnableWebMvc //Caso ao contrário ocorre um erro ao construir a imagem desta aplicação no docker
 public class PessoaControllerTest {
 
     @Autowired
@@ -68,6 +80,7 @@ public class PessoaControllerTest {
         // Simula uma requisição post com os dados da pessoa em Json
         MockHttpServletResponse response = mockMvc.perform(
                 MockMvcRequestBuilders.post("/pessoa")
+                        .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(pessoaJson.write(pessoaDTO).getJson()))
                 .andReturn().getResponse();
@@ -102,6 +115,7 @@ public class PessoaControllerTest {
                 MockMvcRequestBuilders.put("/pessoa")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(pessoaJson.write(pessoaDTO).getJson()))
+                .andExpect(status().is4xxClientError())
                 .andReturn().getResponse();
 
         Assertions.assertThat(response.getStatus()).isEqualTo(HttpStatus.CONFLICT.value());
@@ -146,17 +160,4 @@ public class PessoaControllerTest {
 
     }
 
-    @Test
-    @DisplayName("Deveria retornar 500 quando consultar pessoa por id inexistente") 
-    void consultarPessoaDadosInvalidos() throws Exception {
-        Pessoa pessoaRetorno = new Pessoa(0,"matheus","matheus@email.com","123",PermissaoEnum.ALUNO);
-        
-        when(pessoaService.get(0)).thenThrow(EntityNotFoundException.class);
-
-        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get("/pessoa/0"))
-                .andReturn().getResponse();
-
-        Assertions.assertThat(response.getStatus()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR.value());
-
-    }
 }

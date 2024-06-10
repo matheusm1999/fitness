@@ -15,7 +15,7 @@ import jakarta.validation.constraints.NotBlank;
 @Setter
 public class PessoaDTO {
 
-    private int idPessoa;
+    private Integer idPessoa;
 
     @NotBlank(message = "Nome é obrigatório")
     private String nome;

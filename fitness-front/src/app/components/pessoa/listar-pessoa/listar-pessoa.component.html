@@ -1,7 +1,7 @@
 <p class="text-secundaria text-2xl font-bold">Pessoas</p>
 
 <div class="flex gap-2">
-    <button (click)="listarPessoas()" class="bg-secundaria rounded-2xl py-1 px-2">Listar Pessoas</button>
+    <button (click)="listarPessoasPaginacao(null)" class="bg-secundaria rounded-2xl py-1 px-2">Listar Pessoas</button>
     <button routerLink="/cadastrarPessoa" class="bg-secundaria rounded-2xl py-1 px-2">Cadastrar Pessoas</button>
 </div>
 
@@ -45,12 +45,13 @@
                 </td>
             </tr>
         </tbody>
+        <tfoot>
+        </tfoot>
     </table>
+    <app-paginator 
+        (acaoClique)="atualizarQuantidadeRegistrosPaginacao($event)"
+        (acaoRetrocederPagina)="retrocederPagina()"
+        (acaoAvancarPagina)="avancarPagina()"
+        [paginacao]="paginacao">
+    </app-paginator>
 </div>
-
-<!-- 
-    <div *ngFor="let pessoa of pessoas">
-        {{pessoa.nome}}
-        <app-pessoa-single [pessoa]="pessoa"></app-pessoa-single>
-    </div>
--->
