@@ -1,3 +1,0 @@
-docker login  -u macielmaatheuss
-
-dckr_pat_UvVy-gEz20cbx-jWC8LeBX7MUkI
