@@ -50,10 +50,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - uses: actions/checkout@v4
+
       - name: Build
         working-directory: fitness
-        run: mvn package --file pom.xml -Dmaven.test.skip
+        run: mvn --file pom.xml package -Dmaven.test.skip
 
       # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
       - name: Update dependency graph
