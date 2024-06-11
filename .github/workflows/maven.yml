@@ -32,9 +32,11 @@ jobs:
       run: mvn --file fitness/pom.xml test
       
     - name: Build-DB
+      working-directory: fitness
       run: docker-compose build
 
     - name: Create-DB
+      working-directory: fitness
       run: docker-compose up -d
 
   build:
