@@ -52,7 +52,8 @@ jobs:
           cache: maven
 
       - name: Build
-        run: mvn --file fitness/pom.xml package -Dmaven.test.skip
+        working-directory: fitness
+        run: mvn package -Dmaven.test.skip
 
       # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
       - name: Update dependency graph
