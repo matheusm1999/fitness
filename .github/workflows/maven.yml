@@ -45,6 +45,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build
+        working-directory: fitness
         run: mvn package --file pom.xml -Dmaven.test.skip
 
       # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
