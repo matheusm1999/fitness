@@ -30,14 +30,6 @@ jobs:
 
     - name: Test with Maven
       run: mvn --file fitness/pom.xml test
-      
-    - name: Build-DB
-      working-directory: fitness
-      run: docker-compose build
-
-    - name: Create-DB
-      working-directory: fitness
-      run: docker-compose up -d
 
   build:
     needs: test
@@ -51,6 +43,15 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+            
+     # - name: Build-DB
+     #   working-directory: fitness
+     #   run: docker-compose build
+  
       - name: Build
         working-directory: fitness
-        run: mvn package -Dmaven.test.skip
+        run: docker-compose up -d
+
+   #   - name: Build
+   #     working-directory: fitness
+   #     run: mvn package -Dmaven.test.skip
