@@ -4,6 +4,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { ListarPessoaComponent } from './components/pessoa/listar-pessoa/listar-pessoa.component';
 import { CadastrarPessoaComponent } from './components/pessoa/cadastrar-pessoa/cadastrar-pessoa.component';
 import { AtualizarPessoaComponent } from './components/pessoa/atualizar-pessoa/atualizar-pessoa.component';
+import { ListarTreinoComponent } from './components/treino/listar-treino/listar-treino.component';
+import { CadastrarTreinoComponent } from './components/treino/cadastrar-treino/cadastrar-treino.component';
+import { AtualizarTreinoComponent } from './components/treino/atualizar-treino/atualizar-treino.component';
 
 const routes: Routes = [
   {
@@ -26,6 +29,18 @@ const routes: Routes = [
   {
     path:'atualizarPessoa/:id',
     component: AtualizarPessoaComponent
+  },
+  {
+    path:'listarTreino',
+    component: ListarTreinoComponent
+  },
+  {
+    path:'cadastrarTreino',
+    component: CadastrarTreinoComponent
+  },
+  {
+    path:'atualizarTreino/:id',
+    component:  AtualizarTreinoComponent
   }
 ];
 

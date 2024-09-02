@@ -42,7 +42,7 @@ public class PessoaServiceTest {
     private ArgumentCaptor<Pessoa> pessoaCaptor; //Para permitir capturar os argumentos passados para um método
 
     @Test
-    @DisplayName("Deve atualiar a pessoa os dados informados corretamente")
+    @DisplayName("Deve atualizar a pessoa os dados informados corretamente")
     //Simula o método original: encontra a pessoa pelo id, valida e então atualiza. Ao final, verifica se a pessoa retornada (atualizada) é aquela que foi passada nos parâmetros
     void deveriaAtualizarPessoa() {
         Pessoa pessoa = new Pessoa(1,"Fulano","fulano@email.com","312",PermissaoEnum.ALUNO);

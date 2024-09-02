@@ -1,0 +1,9 @@
+<div *ngIf="treino">
+    <app-formulario-base-treino 
+        conteudoBotao="EDITAR"
+        titulo="EDITAR TREINO"
+        [treino]="treino"
+        (acaoClique)="atualizarTreino($event)">
+    </app-formulario-base-treino>
+    <app-mensagem-erro [mensagemErro]="mensagemErro"></app-mensagem-erro>
+</div>

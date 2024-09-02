@@ -30,9 +30,9 @@ import lombok.ToString;
 public class Treino {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idTreino;
+    private Integer idTreino;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "idPessoa")
     private Pessoa pessoa;
 

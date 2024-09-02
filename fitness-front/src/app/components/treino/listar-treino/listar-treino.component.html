@@ -1,0 +1,33 @@
+<p class="text-secundaria text-2xl font-bold">Treinos</p>
+
+<div class="flex gap-2">
+    <button class="bg-secundaria rounded-2xl py-1 px-2">Listar Treinos</button>
+    <button routerLink="/cadastrarTreino" class="bg-secundaria rounded-2xl py-1 px-2">Cadastrar Treinos</button>    
+</div>
+
+<table class="w-full table-fixed">
+    <thead class="bg-hover-preto text-center">
+        <tr>
+            <th>ID</th>
+            <th>NOME</th>
+            <th>NOME PESSOA</th>
+            <th>INÍCIO</th>
+            <th>FIM</th>
+            <th>AÇÃO</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let treino of treinos" class="even:bg-hover-preto odd:bg-inherit border-t border-secundaria text-center">
+            <td class="py-4 break-words">{{treino.idTreino}}</td>
+            <td class="py-4 break-words">{{treino.nome}}</td>
+            <td class="py-4 break-words">{{treino.pessoa.nome}}</td>
+            <td class="py-4 break-words">{{ treino.dataInicio | date:'dd/MM/yyyy' }}</td>
+            <td class="py-4 break-words">{{ treino.dataFim | date:'dd/MM/yyyy' }}</td>
+            <td class="py-4 break-words w-full">
+                <button class="bg-secundaria rounded-2xl break-words w-full sm:w-auto px-1 py-1">CONSULTAR</button>
+                <button [routerLink]="['/atualizarTreino',treino.idTreino]" class="bg-secundaria rounded-2xl break-words w-full sm:w-auto px-1 py-1">EDITAR</button>
+                <button class="bg-secundaria rounded-2xl break-words w-full sm:w-auto px-1 py-1">REMOVER</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

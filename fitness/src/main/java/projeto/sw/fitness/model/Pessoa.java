@@ -37,4 +37,8 @@ public class Pessoa {
     @Enumerated(EnumType.STRING)
     @Column(name = "permissao", length = 30, columnDefinition = "VARCHAR(30)")
     private PermissaoEnum permissao;
+
+    public Pessoa(Integer idPessoa){
+        this.idPessoa = idPessoa;
+    }
 }

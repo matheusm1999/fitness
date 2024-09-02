@@ -1,0 +1,18 @@
+<div class="absolute top-0 bottom-0 end-3 flex items-center ps-3 pointer-events-none">
+    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+    </svg>
+</div>
+<div>
+    <input (input)="buscarDados($event.target)"
+            [value]="textoInput"
+            (click)="trocarEstadoSelecterRegistros()"
+            placeholder="Nome da Pessoa"
+            class="w-full border-2 border-border-default/40 bg-bg-formulario/50 placeholder:font-normal px-3 py-2">
+    </div>
+    <div id="selectRegistros" class="hidden" *ngIf="registros.length >= 0">
+        <ul class="absolute w-full">
+            <li (click)="selecionarRegistro(registros.indexOf(registro))"
+                class="border-2 border-border-default/40 bg-bg-formulario/50 hover:bg-bg-formulario" *ngFor="let registro of registros">{{registro}}</li>
+        </ul>
+</div>

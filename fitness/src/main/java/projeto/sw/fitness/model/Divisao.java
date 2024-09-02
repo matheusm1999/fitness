@@ -1,5 +1,6 @@
 package projeto.sw.fitness.model;
 
+import java.time.DayOfWeek;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -29,16 +30,22 @@ import lombok.ToString;
 public class Divisao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idDivisao;
+    private Integer idDivisao;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "idTreino")
     private Treino treino;
 
     private String nome;
 
-    private String diaSemana;
+    private DiaSemanaEnum diaSemana;
 
     @OneToMany(mappedBy = "divisao")
     private List<Exercicio> exercicios;
+
+
+    public Divisao(Integer idDivisao){
+        this.idDivisao = idDivisao;
+    }
+
 }

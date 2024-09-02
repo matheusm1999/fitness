@@ -21,7 +21,7 @@ export class ListarPessoaComponent implements OnInit{
   }
 
   listarPessoas() {
-    this.pessoaService.listarPessoas().subscribe({
+    this.pessoaService.listarPessoas(null).subscribe({
       next: (pessoas) => {
         this.pessoas = pessoas;
       },

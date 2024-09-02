@@ -1,0 +1,17 @@
+FROM maven:3.8.7-eclipse-temurin-19-alpine AS builder
+
+LABEL maintener="Matheus <matheus@email.com>"
+
+WORKDIR /fitness
+
+COPY pom.xml .
+
+# para baixar as depedências e armazenar em cache, evitando realizar o download das dependências toda vez que ocorrer o build da imagem
+RUN mvn dependency:go-offline
+
+COPY . .
+
+ENV DATASOURCE_USERNAME=root
+ENV DATASOURCE_PASSWORD=1234
+
+RUN mvn test

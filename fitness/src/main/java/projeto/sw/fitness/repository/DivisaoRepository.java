@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import projeto.sw.fitness.model.Divisao;
 
-public interface DivisaoRepository  extends JpaRepository<Divisao,Integer>{
+public interface DivisaoRepository extends JpaRepository<Divisao,Integer>{
 
 }

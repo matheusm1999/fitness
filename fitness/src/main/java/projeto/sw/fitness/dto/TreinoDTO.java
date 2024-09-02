@@ -2,6 +2,8 @@ package projeto.sw.fitness.dto;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,15 +16,17 @@ import lombok.Setter;
 @Setter
 public class TreinoDTO {
 
-    private int idTreino;
+    private Integer idTreino;
 
-    @Valid
+    //@Valid
     private PessoaDTO pessoa;
 
     private String nome;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataInicio;
     
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataFim;
 
 }

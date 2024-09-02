@@ -29,8 +29,6 @@ export class AtualizarPessoaComponent implements OnInit {
     if(!formulario.valid){
       return;
     }
-    let pessoaAtualizada: Pessoa = formulario.value;
-    pessoaAtualizada.idPessoa = 79;
     this.pessoaService.atualizarPessoa(formulario.value).subscribe({
       next: (value) => {
         this.router.navigate(['/listarPessoa']);

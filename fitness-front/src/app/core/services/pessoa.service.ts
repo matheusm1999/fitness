@@ -13,8 +13,8 @@ export class PessoaService {
   constructor(private http: HttpClient) { }
 
 
-  listarPessoas(): Observable<Pessoa[]> {
-    return this.http.get<Pessoa[]>(environment.apiURlPessoa);
+  listarPessoas(parametros: HttpParams): Observable<Pessoa[]> {
+    return this.http.get<Pessoa[]>(environment.apiURlPessoa, {params:parametros});
     /*
     return this.http.get<Pessoa[]>(environment.apiURlPessoa).pipe(
       tap((retorno) => console.log("Retorno: " + retorno)),

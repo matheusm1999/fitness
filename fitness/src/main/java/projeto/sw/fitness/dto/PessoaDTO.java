@@ -29,4 +29,8 @@ public class PessoaDTO {
 
     private PermissaoEnum permissao;
 
+    public PessoaDTO(Integer idPessoa){
+        this.idPessoa = idPessoa;
+    }
+
 }

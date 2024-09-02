@@ -1,0 +1,56 @@
+<form [formGroup]="formulario" class="h-full rounded-lg py-2 px-3">
+    <h2 class="text-center text-2xl font-bold text-secundaria">{{titulo}}</h2>
+    <div class="flex flex-col gap-3 mt-4">
+        <div>
+            <p class="text-red-500" *ngIf="formulario.get('nome')?.errors?.['required'] && formulario.get('nome')?.dirty">Nome é obrigatório</p>
+            <input class="w-full border-2 border-border-default/40 bg-bg-formulario/50 placeholder:font-normal px-3 py-2" placeholder="nome" formControlName="nome">
+        </div>
+        <div>
+            <p class="text-red-500" *ngIf="formulario.get('dataInicio')?.errors?.['required'] && formulario.get('dataInicio')?.dirty">Data Início é obrigatória</p>
+            <input type="date" class="w-full border-2 border-border-default/40 bg-bg-formulario/50 placeholder:font-normal px-3 py-2"
+                placeholder="Data Início" formControlName="dataInicio" onfocus="(this.type='date')" onblur="(this.type='date')">
+        </div>
+        <div>
+            <p class="text-red-500" *ngIf="formulario.get('dataFim')?.errors?.['required'] && formulario.get('dataFim')?.dirty">Data Fim é obrigatória</p>
+            <input type="date" class="w-full border-2 border-border-default/40 bg-bg-formulario/50 placeholder:font-normal px-3 py-2"
+                placeholder="Data Fim" formControlName="dataFim" onfocus="(this.type='date')" onblur="(this.type='date')">
+        </div>
+        <div formGroupName="pessoa">
+            <p class="text-red-500" *ngIf="formulario.get('pessoa')?.errors?.['required'] && formulario.get('pessoa')?.dirty">Pessoa é obrigatório</p>
+            <div class="relative">
+                <app-buscador
+                    (acaoDigitar)="buscarPessoas($event)"
+                    (acaoSelecionarRegistro)="selecionarPessoa($event)"
+                    [registros]="pessoasConteudo"
+                    [textoInput]="inputPessoa">
+                </app-buscador>
+                <!-- 
+                    <div>
+                        <input (input)="buscarPessoas($event.target)"
+                            [value]="inputPessoa"
+                            (click)="trocarEstadoSelectPessoa()"
+                            placeholder="Nome da Pessoa"
+                            class="w-full border-2 border-border-default/40 bg-bg-formulario/50 placeholder:font-normal px-3 py-2">
+                    </div>
+                    <div id="selectPessoa" class="hidden" *ngIf="pessoas.length >= 0">
+                        <ul class="absolute w-full">
+                            <li (click)="selecionarPessoa(pessoa)"
+                                class="border-2 border-border-default/40 bg-bg-formulario/50 hover:bg-bg-formulario" *ngFor="let pessoa of pessoas">{{pessoa.nome}}</li>
+                        </ul>
+                    </div>
+                -->
+
+            </div>
+        </div>
+    </div>
+
+    <div class="text-end">
+        <button type="button"
+            [ngClass]="{'bg-secundaria/30' : formulario.invalid}"
+            [disabled]="formulario.invalid"
+            (click)="acao()"
+            class="bg-secundaria text-primaria font-normal rounded-2xl py-2 px-4 mt-5">{{conteudoBotao}}
+        </button>
+    </div>
+
+</form>

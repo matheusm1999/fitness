@@ -16,6 +16,12 @@ import { CadastrarPessoaComponent } from './components/pessoa/cadastrar-pessoa/c
 import { FormularioBaseComponent } from './shared/pessoa/formulario-base/formulario-base.component';
 import { AtualizarPessoaComponent } from './components/pessoa/atualizar-pessoa/atualizar-pessoa.component';
 import { PaginatorComponent } from './shared/paginator/paginator.component';
+import { CadastrarTreinoComponent } from './components/treino/cadastrar-treino/cadastrar-treino.component';
+import { ListarTreinoComponent } from './components/treino/listar-treino/listar-treino.component';
+import { FormularioBaseTreinoComponent } from './shared/treino/formulario-base-treino/formulario-base-treino.component';
+import { AtualizarTreinoComponent } from './components/treino/atualizar-treino/atualizar-treino.component';
+import { BuscadorComponent } from './shared/buscador/buscador.component';
+import { MensagemErroComponent } from './shared/mensagem-erro/mensagem-erro.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +36,13 @@ import { PaginatorComponent } from './shared/paginator/paginator.component';
     CadastrarPessoaComponent,
     FormularioBaseComponent,
     AtualizarPessoaComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    CadastrarTreinoComponent,
+    ListarTreinoComponent,
+    FormularioBaseTreinoComponent,
+    AtualizarTreinoComponent,
+    BuscadorComponent,
+    MensagemErroComponent
   ],
   imports: [
     BrowserModule,
