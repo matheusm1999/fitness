@@ -53,7 +53,7 @@ jobs:
   
       - name: Build
         working-directory: fitness
-        run: docker-compose up -d
+        run: docker compose up -d
 
    #   - name: Build
    #     working-directory: fitness
