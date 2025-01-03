@@ -64,13 +64,10 @@ public class TreinoService {
     }
 
     public Example<Treino> treinoBusca(Treino treino) {
-        System.out.println("Valor do treino: ");
-        System.out.println(treino);
-
         ExampleMatcher matcher = ExampleMatcher.matching()
             .withMatcher("idTreino", match -> match.exact())
             .withMatcher("pessoa.idPessoa", match -> match.exact())
-            .withIgnorePaths("nome").withIgnoreNullValues()
+            .withMatcher("nome", match -> match.contains().ignoreCase())
             .withIgnorePaths("dataInicio").withIgnoreNullValues()
             .withIgnorePaths("dataFim").withIgnoreNullValues();
 

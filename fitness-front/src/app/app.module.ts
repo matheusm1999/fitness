@@ -22,6 +22,10 @@ import { FormularioBaseTreinoComponent } from './shared/treino/formulario-base-t
 import { AtualizarTreinoComponent } from './components/treino/atualizar-treino/atualizar-treino.component';
 import { BuscadorComponent } from './shared/buscador/buscador.component';
 import { MensagemErroComponent } from './shared/mensagem-erro/mensagem-erro.component';
+import { ListarDivisaoComponent } from './components/divisao/listar-divisao/listar-divisao.component';
+import { CadastrarDivisaoComponent } from './components/divisao/cadastrar-divisao/cadastrar-divisao.component';
+import { FormularioBaseDivisaoComponent } from './shared/divisao/formulario-base-divisao/formulario-base-divisao.component';
+import { AtualizarDivisaoComponent } from './components/divisao/atualizar-divisao/atualizar-divisao.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,11 @@ import { MensagemErroComponent } from './shared/mensagem-erro/mensagem-erro.comp
     FormularioBaseTreinoComponent,
     AtualizarTreinoComponent,
     BuscadorComponent,
-    MensagemErroComponent
+    MensagemErroComponent,
+    ListarDivisaoComponent,
+    CadastrarDivisaoComponent,
+    FormularioBaseDivisaoComponent,
+    AtualizarDivisaoComponent
   ],
   imports: [
     BrowserModule,

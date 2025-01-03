@@ -16,8 +16,8 @@ export class TreinoService {
     return this.http.get<Treino>(environment.apiURLTreino + '/' + id);
   }
 
-  listarTreinos(): Observable<Treino[]> {
-    return this.http.get<Treino[]>(environment.apiURLTreino);
+  listarTreinos(parametros: HttpParams): Observable<Treino[]> {
+    return this.http.get<Treino[]>(environment.apiURLTreino, {params: parametros});
   }
 
   listarTreinosPaginacao(parametros: HttpParams): Observable<Paginacao> {
@@ -30,6 +30,10 @@ export class TreinoService {
 
   atualizarTreino(treino: Treino): Observable<Treino> {
     return this.http.put<Treino>(environment.apiURLTreino, treino);
+  }
+
+  excluirTreino(id: number): Observable<Treino> {
+    return this.http.delete<Treino>(environment.apiURLTreino + '/' + id);
   }
 
 }

@@ -7,6 +7,9 @@ import { AtualizarPessoaComponent } from './components/pessoa/atualizar-pessoa/a
 import { ListarTreinoComponent } from './components/treino/listar-treino/listar-treino.component';
 import { CadastrarTreinoComponent } from './components/treino/cadastrar-treino/cadastrar-treino.component';
 import { AtualizarTreinoComponent } from './components/treino/atualizar-treino/atualizar-treino.component';
+import { ListarDivisaoComponent } from './components/divisao/listar-divisao/listar-divisao.component';
+import { CadastrarDivisaoComponent } from './components/divisao/cadastrar-divisao/cadastrar-divisao.component';
+import { AtualizarDivisaoComponent } from './components/divisao/atualizar-divisao/atualizar-divisao.component';
 
 const routes: Routes = [
   {
@@ -40,7 +43,19 @@ const routes: Routes = [
   },
   {
     path:'atualizarTreino/:id',
-    component:  AtualizarTreinoComponent
+    component: AtualizarTreinoComponent
+  },
+  {
+    path:'listarDivisao',
+    component: ListarDivisaoComponent
+  },
+  {
+    path:'cadastrarDivisao',
+    component: CadastrarDivisaoComponent
+  },
+    {
+    path:'atualizarDivisao/:id',
+    component: AtualizarDivisaoComponent
   }
 ];
 

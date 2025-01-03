@@ -7,7 +7,7 @@
     <input (input)="buscarDados($event.target)"
             [value]="textoInput"
             (click)="trocarEstadoSelecterRegistros()"
-            placeholder="Nome da Pessoa"
+            [placeholder]="placeholder"
             class="w-full border-2 border-border-default/40 bg-bg-formulario/50 placeholder:font-normal px-3 py-2">
     </div>
     <div id="selectRegistros" class="hidden" *ngIf="registros.length >= 0">

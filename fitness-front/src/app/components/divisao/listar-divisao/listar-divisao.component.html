@@ -1,0 +1,40 @@
+<p class="text-secundaria text-2xl font-bold">Divisões</p>
+
+<div class="flex gap-2">
+    <button (click)="listarDivisoes(null)" class="bg-secundaria rounded-2xl py-1 px-2">Listar Divisões</button>
+    <button routerLink="/cadastrarDivisao" class="bg-secundaria rounded-2xl py-1 px-2">Cadastrar Divisões</button>
+</div>
+
+<table class="w-full table-fixed border-secundaria text-center">
+    <thead class="bg-hover-preto">
+        <tr>
+            <th class="break-words">ID</th>
+            <th class="break-words">NOME</th>
+            <th class="break-words">DIA SEMANA</th>
+            <th class="break-words">TREINO</th>
+            <th break-words>AÇÃO</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let divisao of divisoes" class="even:bg-hover-preto odd:bg-inherit border-t border-secundaria">
+            <td class="py-4 break-words">{{divisao.idDivisao}}</td>
+            <td class="py-4 break-words">{{divisao.nome}}</td>
+            <td class="py-4 break-words">{{divisao.diaSemana}}</td>
+            <td class="py-4 break-words">{{divisao.treino.nome}}</td>
+            <td class="py-4 break-words w-full">
+                <button class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">CONSULTAR</button>
+                <button [routerLink]="['/atualizarDivisao',divisao.idDivisao]" class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">EDITAR</button>
+                <button (click)="excluirDivisao(divisao.idDivisao)" class="break-words w-full sm:w-auto bg-secundaria rounded-2xl py-1 px-1">REMOVER</button>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+    </tfoot>
+</table>
+
+<app-paginator *ngIf="paginacao"
+    (acaoClique)="atualizarQuantidadeRegistrosPaginacao($event)"
+    (acaoRetrocederPagina)="retrocederPagina()"
+    (acaoAvancarPagina)="avancarPagina()"
+    [paginacao]="paginacao"
+></app-paginator>

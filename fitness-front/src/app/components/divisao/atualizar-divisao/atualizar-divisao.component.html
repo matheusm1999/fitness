@@ -1,0 +1,8 @@
+<div *ngIf="divisao">
+    <app-formulario-base-divisao
+        (acaoClique)="editarDivisao($event)"
+        titulo="EDITAR DIVISÃO"
+        conteudoBotao="EDITAR"
+        [divisao] = "divisao">
+    </app-formulario-base-divisao>
+</div>

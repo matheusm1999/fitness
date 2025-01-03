@@ -31,7 +31,7 @@ public interface IDivisaoController {
     @Transactional
     public ResponseEntity atualizar(@RequestBody @Valid DivisaoDTO divisaoDTO);
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity excluir(@PathVariable Integer id);
 

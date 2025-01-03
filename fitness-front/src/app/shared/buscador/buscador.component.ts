@@ -10,6 +10,7 @@ export class BuscadorComponent {
   @Output() acaoSelecionarRegistro:EventEmitter<any> = new EventEmitter();
   @Input() textoInput: string = '';
   @Input() registros: any[];
+  @Input() placeholder: string = 'Escolha um valor';
   
   buscarDados(evento) {
     this.acaoDigitar.emit(evento);

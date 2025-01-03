@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Pessoa } from 'src/app/core/models/Pessoa';
 import { Treino } from 'src/app/core/models/Treino';
@@ -10,7 +10,7 @@ import { PessoaService } from 'src/app/core/services/pessoa.service';
   templateUrl: './formulario-base-treino.component.html',
   styleUrls: ['./formulario-base-treino.component.css']
 })
-export class FormularioBaseTreinoComponent {
+export class FormularioBaseTreinoComponent implements OnInit{
 
   @Output() acaoClique: EventEmitter<any> = new EventEmitter<any>;
   @Input() treino: Treino;
