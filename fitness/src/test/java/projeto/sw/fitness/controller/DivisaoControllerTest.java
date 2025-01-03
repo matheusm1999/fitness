@@ -32,6 +32,8 @@ import projeto.sw.fitness.infra.exception.TratadorErros;
 @EnableWebMvc //Caso ao contrário ocorre um erro ao construir a imagem desta aplicação no docker
 public class DivisaoControllerTest {
 
+    /* 
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -40,5 +42,6 @@ public class DivisaoControllerTest {
 
     @MockBean
     private DivisaoService divisaoService;
+*/
 
 }
